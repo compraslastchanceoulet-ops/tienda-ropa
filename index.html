@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Style | Moda Hombre y Mujer</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 25px;
+    }
+
+    .hero {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #111, #444);
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: white;
+      color: #111;
+      padding: 14px 30px;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    section {
+      padding: 60px 7%;
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 35px;
+    }
+
+    .categorias {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .categoria {
+      background: #222;
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .categoria h3 {
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .producto {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .foto {
+      height: 260px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
+
+    .producto h3 {
+      margin-bottom: 8px;
+    }
+
+    .precio {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .comprar {
+      display: block;
+      margin-top: 12px;
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .contacto {
+      background: #111;
+      color: white;
+      text-align: center;
+    }
+
+    footer {
+      background: #000;
+      color: #aaa;
+      text-align: center;
+      padding: 25px;
+    }
+
+    @media (max-width: 800px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .productos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .categorias {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .productos {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">URBAN STYLE</div>
+
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#hombre">Hombre</a>
+      <a href="#mujer">Mujer</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div>
+      <h1>URBAN STYLE</h1>
+      <p>Moda para hombre y mujer</p>
+      <a href="#coleccion" class="btn">VER COLECCIÓN</a>
+    </div>
+  </section>
+
+  <section id="coleccion">
+    <h2>Compra por categoría</h2>
+
+    <div class="categorias">
+
+      <div class="categoria" id="hombre">
+        <h3>HOMBRE</h3>
+        <p>Descubre nuestra colección masculina</p>
+      </div>
+
+      <div class="categoria" id="mujer">
+        <h3>MUJER</h3>
+        <p>Descubre nuestra colección femenina</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Productos destacados</h2>
+
+    <div class="productos">
+
+      <div class="producto">
+        <div class="foto">FOTO DEL PRODUCTO</div>
+        <h3>Camiseta Basic</h3>
+        <p class="precio">19,99 €</p>
+        <a href="#contacto" class="comprar">COMPRAR</a>
+      </div>
+
+      <div class="producto">
+        <div class="foto">FOTO DEL PRODUCTO</div>
+        <h3>Sudadera Urban</h3>
+        <p class="precio">39,99 €</p>
+        <a href="#contacto" class="comprar">COMPRAR</a>
+      </div>
+
+      <div class="producto">
+        <div class="foto">FOTO DEL PRODUCTO</div>
+        <h3>Pantalón Street</h3>
+        <p class="precio">34,99 €</p>
+        <a href="#contacto" class="comprar">COMPRAR</a>
+      </div>
+
+      <div class="producto">
+        <div class="foto">FOTO DEL PRODUCTO</div>
+        <h3>Chaqueta Premium</h3>
+        <p class="precio">59,99 €</p>
+        <a href="#contacto" class="comprar">COMPRAR</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <h2>¿Quieres hacer un pedido?</h2>
+    <p>Contacta con nosotros para consultar tallas y disponibilidad.</p>
+
+    <br>
+
+    <a class="btn" href="https://wa.me/34600000000">
+      CONTACTAR POR WHATSAPP
+    </a>
+  </section>
+
+  <footer>
+    © 2026 Urban Style - Todos los derechos reservados
+  </footer>
+
+</body>
+</html>
