@@ -1,276 +1,933 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Style | Moda Hombre y Mujer</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+<title>Last Chance Outlet | Moda Hombre y Mujer</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#fff;
+    color:#111;
+}
+
+header{
+    background:#fff;
+    border-bottom:1px solid #ddd;
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#e00000;
+}
+
+nav a{
+    color:#111;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:bold;
+}
+
+.cart-button{
+    background:#111;
+    color:#fff;
+    border:none;
+    padding:12px 18px;
+    border-radius:5px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.hero{
+    min-height:520px;
+    background:#111;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 20px;
+}
+
+.hero h1{
+    font-size:60px;
+    line-height:1;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#e00000;
+}
+
+.hero p{
+    font-size:21px;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    background:#e00000;
+    color:#fff;
+    padding:15px 30px;
+    text-decoration:none;
+    font-weight:bold;
+    border-radius:4px;
+    border:none;
+    cursor:pointer;
+}
+
+section{
+    padding:70px 6%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:34px;
+    margin-bottom:40px;
+}
+
+.categories{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.category{
+    min-height:250px;
+    background:#f2f2f2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border:1px solid #ddd;
+}
+
+.category h3{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.category a{
+    color:#e00000;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.product{
+    background:#fff;
+    border:1px solid #ddd;
+    padding:12px;
+    transition:.2s;
+}
+
+.product:hover{
+    transform:translateY(-4px);
+    box-shadow:0 8px 25px rgba(0,0,0,.1);
+}
+
+.product-image{
+    height:280px;
+    background:#eee;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#888;
+    margin-bottom:15px;
+    font-size:14px;
+}
+
+.product h3{
+    margin-bottom:8px;
+}
+
+.price{
+    font-size:20px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.old-price{
+    color:#999;
+    text-decoration:line-through;
+    font-size:14px;
+    margin-left:5px;
+}
+
+.sizes{
+    display:flex;
+    gap:7px;
+    margin-bottom:15px;
+}
+
+.size{
+    border:1px solid #aaa;
+    padding:7px 10px;
+    cursor:pointer;
+    background:#fff;
+}
+
+.size.selected{
+    background:#111;
+    color:#fff;
+}
+
+.add{
+    width:100%;
+    background:#111;
+    color:#fff;
+    border:none;
+    padding:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.offer{
+    background:#e00000;
+    color:#fff;
+    text-align:center;
+    padding:60px 20px;
+}
+
+.offer h2{
+    font-size:40px;
+    margin-bottom:10px;
+}
+
+.contact{
+    background:#111;
+    color:#fff;
+    text-align:center;
+}
+
+.contact p{
+    margin:15px 0 25px;
+}
+
+footer{
+    background:#000;
+    color:#aaa;
+    text-align:center;
+    padding:25px;
+}
+
+/* CARRITO */
+
+.cart{
+    position:fixed;
+    top:0;
+    right:-450px;
+    width:420px;
+    max-width:100%;
+    height:100%;
+    background:#fff;
+    z-index:2000;
+    box-shadow:-5px 0 25px rgba(0,0,0,.25);
+    padding:25px;
+    transition:.3s;
+    overflow-y:auto;
+}
+
+.cart.open{
+    right:0;
+}
+
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #ddd;
+    padding-bottom:15px;
+    margin-bottom:20px;
+}
+
+.close{
+    border:none;
+    background:none;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.cart-item{
+    border-bottom:1px solid #ddd;
+    padding:15px 0;
+}
+
+.cart-item strong{
+    display:block;
+    margin-bottom:5px;
+}
+
+.cart-total{
+    font-size:22px;
+    font-weight:bold;
+    margin:25px 0;
+}
+
+.checkout{
+    width:100%;
+    background:#e00000;
+    color:#fff;
+    border:none;
+    padding:15px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+/* FORMULARIO */
+
+.order-form{
+    display:none;
+    margin-top:25px;
+    border-top:1px solid #ddd;
+    padding-top:20px;
+}
+
+.order-form input,
+.order-form textarea{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #ccc;
+}
+
+.order-form textarea{
+    height:80px;
+    resize:none;
+}
+
+@media(max-width:900px){
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    body {
-      background: #f7f7f7;
-      color: #111;
+    nav{
+        display:none;
     }
 
-    header {
-      background: #111;
-      color: white;
-      padding: 20px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .hero h1{
+        font-size:45px;
+    }
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:15px 4%;
     }
 
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      letter-spacing: 2px;
+    .logo{
+        font-size:18px;
     }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 25px;
+    .hero{
+        min-height:450px;
     }
 
-    .hero {
-      min-height: 500px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, #111, #444);
-      color: white;
-      padding: 40px 20px;
+    .hero h1{
+        font-size:38px;
     }
 
-    .hero h1 {
-      font-size: 55px;
-      margin-bottom: 15px;
+    .categories{
+        grid-template-columns:1fr;
     }
 
-    .hero p {
-      font-size: 20px;
-      margin-bottom: 30px;
+    .products{
+        grid-template-columns:1fr;
     }
 
-    .btn {
-      display: inline-block;
-      background: white;
-      color: #111;
-      padding: 14px 30px;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 5px;
+    section{
+        padding:50px 5%;
     }
 
-    section {
-      padding: 60px 7%;
+    .cart{
+        width:100%;
     }
-
-    section h2 {
-      text-align: center;
-      font-size: 32px;
-      margin-bottom: 35px;
-    }
-
-    .categorias {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 25px;
-    }
-
-    .categoria {
-      background: #222;
-      color: white;
-      padding: 80px 20px;
-      text-align: center;
-      border-radius: 10px;
-    }
-
-    .categoria h3 {
-      font-size: 30px;
-      margin-bottom: 15px;
-    }
-
-    .productos {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .producto {
-      background: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
-
-    .foto {
-      height: 260px;
-      background: #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #777;
-      margin-bottom: 15px;
-      border-radius: 8px;
-    }
-
-    .producto h3 {
-      margin-bottom: 8px;
-    }
-
-    .precio {
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .comprar {
-      display: block;
-      margin-top: 12px;
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-
-    .contacto {
-      background: #111;
-      color: white;
-      text-align: center;
-    }
-
-    footer {
-      background: #000;
-      color: #aaa;
-      text-align: center;
-      padding: 25px;
-    }
-
-    @media (max-width: 800px) {
-      .hero h1 {
-        font-size: 40px;
-      }
-
-      .productos {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .categorias {
-        grid-template-columns: 1fr;
-      }
-
-      nav {
-        display: none;
-      }
-    }
-
-    @media (max-width: 500px) {
-      .productos {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">URBAN STYLE</div>
+<header>
+
+    <div class="logo">
+        LAST CHANCE <span>OUTLET</span>
+    </div>
 
     <nav>
-      <a href="#inicio">Inicio</a>
-      <a href="#hombre">Hombre</a>
-      <a href="#mujer">Mujer</a>
-      <a href="#contacto">Contacto</a>
+        <a href="#inicio">Inicio</a>
+        <a href="#hombre">Hombre</a>
+        <a href="#mujer">Mujer</a>
+        <a href="#ofertas">Ofertas</a>
     </nav>
-  </header>
 
-  <section class="hero" id="inicio">
+    <button class="cart-button" onclick="openCart()">
+        🛒 Carrito (<span id="cartCount">0</span>)
+    </button>
+
+</header>
+
+
+<section class="hero" id="inicio">
+
     <div>
-      <h1>URBAN STYLE</h1>
-      <p>Moda para hombre y mujer</p>
-      <a href="#coleccion" class="btn">VER COLECCIÓN</a>
-    </div>
-  </section>
 
-  <section id="coleccion">
-    <h2>Compra por categoría</h2>
+        <h1>
+            LAST CHANCE <span>OUTLET</span>
+        </h1>
 
-    <div class="categorias">
+        <p>
+            Moda para hombre y mujer a precios increíbles
+        </p>
 
-      <div class="categoria" id="hombre">
-        <h3>HOMBRE</h3>
-        <p>Descubre nuestra colección masculina</p>
-      </div>
-
-      <div class="categoria" id="mujer">
-        <h3>MUJER</h3>
-        <p>Descubre nuestra colección femenina</p>
-      </div>
+        <a href="#productos" class="btn">
+            COMPRAR AHORA
+        </a>
 
     </div>
-  </section>
 
-  <section>
-    <h2>Productos destacados</h2>
+</section>
 
-    <div class="productos">
 
-      <div class="producto">
-        <div class="foto">FOTO DEL PRODUCTO</div>
-        <h3>Camiseta Basic</h3>
-        <p class="precio">19,99 €</p>
-        <a href="#contacto" class="comprar">COMPRAR</a>
-      </div>
+<section>
 
-      <div class="producto">
-        <div class="foto">FOTO DEL PRODUCTO</div>
-        <h3>Sudadera Urban</h3>
-        <p class="precio">39,99 €</p>
-        <a href="#contacto" class="comprar">COMPRAR</a>
-      </div>
+    <h2 class="section-title">
+        Compra por categoría
+    </h2>
 
-      <div class="producto">
-        <div class="foto">FOTO DEL PRODUCTO</div>
-        <h3>Pantalón Street</h3>
-        <p class="precio">34,99 €</p>
-        <a href="#contacto" class="comprar">COMPRAR</a>
-      </div>
+    <div class="categories">
 
-      <div class="producto">
-        <div class="foto">FOTO DEL PRODUCTO</div>
-        <h3>Chaqueta Premium</h3>
-        <p class="precio">59,99 €</p>
-        <a href="#contacto" class="comprar">COMPRAR</a>
-      </div>
+        <div class="category" id="hombre">
+
+            <div>
+                <h3>HOMBRE</h3>
+
+                <p>
+                    Descubre nuestra colección masculina
+                </p>
+
+                <br>
+
+                <a href="#productos">
+                    VER PRODUCTOS →
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="category" id="mujer">
+
+            <div>
+                <h3>MUJER</h3>
+
+                <p>
+                    Descubre nuestra colección femenina
+                </p>
+
+                <br>
+
+                <a href="#productos">
+                    VER PRODUCTOS →
+                </a>
+            </div>
+
+        </div>
 
     </div>
-  </section>
 
-  <section class="contacto" id="contacto">
-    <h2>¿Quieres hacer un pedido?</h2>
-    <p>Contacta con nosotros para consultar tallas y disponibilidad.</p>
+</section>
 
-    <br>
 
-    <a class="btn" href="https://wa.me/34600000000">
-      CONTACTAR POR WHATSAPP
+<section id="productos">
+
+    <h2 class="section-title">
+        Productos destacados
+    </h2>
+
+    <div class="products">
+
+
+        <!-- PRODUCTO 1 -->
+
+        <div class="product">
+
+            <div class="product-image">
+                FOTO CAMISETA
+            </div>
+
+            <h3>Camiseta Essential</h3>
+
+            <div class="price">
+                19,99 €
+                <span class="old-price">29,99 €</span>
+            </div>
+
+            <div class="sizes">
+
+                <button class="size">S</button>
+                <button class="size">M</button>
+                <button class="size">L</button>
+                <button class="size">XL</button>
+
+            </div>
+
+            <button
+                class="add"
+                onclick="addToCart('Camiseta Essential',19.99)">
+                AÑADIR AL CARRITO
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCTO 2 -->
+
+        <div class="product">
+
+            <div class="product-image">
+                FOTO SUDADERA
+            </div>
+
+            <h3>Sudadera Urban</h3>
+
+            <div class="price">
+                34,99 €
+                <span class="old-price">49,99 €</span>
+            </div>
+
+            <div class="sizes">
+
+                <button class="size">S</button>
+                <button class="size">M</button>
+                <button class="size">L</button>
+                <button class="size">XL</button>
+
+            </div>
+
+            <button
+                class="add"
+                onclick="addToCart('Sudadera Urban',34.99)">
+                AÑADIR AL CARRITO
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCTO 3 -->
+
+        <div class="product">
+
+            <div class="product-image">
+                FOTO PANTALÓN
+            </div>
+
+            <h3>Pantalón Street</h3>
+
+            <div class="price">
+                39,99 €
+                <span class="old-price">59,99 €</span>
+            </div>
+
+            <div class="sizes">
+
+                <button class="size">38</button>
+                <button class="size">40</button>
+                <button class="size">42</button>
+                <button class="size">44</button>
+
+            </div>
+
+            <button
+                class="add"
+                onclick="addToCart('Pantalón Street',39.99)">
+                AÑADIR AL CARRITO
+            </button>
+
+        </div>
+
+
+        <!-- PRODUCTO 4 -->
+
+        <div class="product">
+
+            <div class="product-image">
+                FOTO CHAQUETA
+            </div>
+
+            <h3>Chaqueta Premium</h3>
+
+            <div class="price">
+                59,99 €
+                <span class="old-price">89,99 €</span>
+            </div>
+
+            <div class="sizes">
+
+                <button class="size">S</button>
+                <button class="size">M</button>
+                <button class="size">L</button>
+                <button class="size">XL</button>
+
+            </div>
+
+            <button
+                class="add"
+                onclick="addToCart('Chaqueta Premium',59.99)">
+                AÑADIR AL CARRITO
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="offer" id="ofertas">
+
+    <h2>🔥 OFERTAS ESPECIALES 🔥</h2>
+
+    <p>
+        Últimas unidades · Precios outlet
+    </p>
+
+</section>
+
+
+<section class="contact">
+
+    <h2 class="section-title">
+        ¿Tienes alguna pregunta?
+    </h2>
+
+    <p>
+        Escríbenos y estaremos encantados de ayudarte.
+    </p>
+
+    <a href="#inicio" class="btn">
+        VOLVER ARRIBA
     </a>
-  </section>
 
-  <footer>
-    © 2026 Urban Style - Todos los derechos reservados
-  </footer>
+</section>
+
+
+<footer>
+
+    © 2026 Last Chance Outlet
+
+</footer>
+
+
+<!-- CARRITO -->
+
+<div class="cart" id="cart">
+
+    <div class="cart-header">
+
+        <h2>Tu carrito</h2>
+
+        <button class="close" onclick="closeCart()">
+            ×
+        </button>
+
+    </div>
+
+    <div id="cartItems">
+
+        <p>
+            Tu carrito está vacío.
+        </p>
+
+    </div>
+
+    <div class="cart-total">
+
+        Total:
+        <span id="cartTotal">0,00 €</span>
+
+    </div>
+
+    <button
+        class="checkout"
+        onclick="showOrderForm()">
+
+        REALIZAR PEDIDO
+
+    </button>
+
+
+    <div class="order-form" id="orderForm">
+
+        <h3 style="margin-bottom:15px;">
+            Datos del pedido
+        </h3>
+
+        <input
+            type="text"
+            id="customerName"
+            placeholder="Nombre y apellidos">
+
+        <input
+            type="tel"
+            id="customerPhone"
+            placeholder="Teléfono">
+
+        <input
+            type="text"
+            id="customerAddress"
+            placeholder="Dirección">
+
+        <input
+            type="text"
+            id="customerCity"
+            placeholder="Ciudad">
+
+        <input
+            type="text"
+            id="customerPostal"
+            placeholder="Código postal">
+
+        <textarea
+            id="customerNotes"
+            placeholder="Notas del pedido (opcional)">
+        </textarea>
+
+        <button
+            class="checkout"
+            onclick="sendOrder()">
+
+            ENVIAR PEDIDO
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let cart = [];
+
+
+function addToCart(name, price){
+
+    cart.push({
+        name:name,
+        price:price
+    });
+
+    updateCart();
+
+    openCart();
+}
+
+
+function updateCart(){
+
+    const items = document.getElementById("cartItems");
+
+    const count = document.getElementById("cartCount");
+
+    const total = document.getElementById("cartTotal");
+
+
+    count.textContent = cart.length;
+
+
+    if(cart.length === 0){
+
+        items.innerHTML =
+            "<p>Tu carrito está vacío.</p>";
+
+        total.textContent = "0,00 €";
+
+        return;
+    }
+
+
+    let html = "";
+
+    let totalPrice = 0;
+
+
+    cart.forEach((item,index)=>{
+
+        totalPrice += item.price;
+
+        html += `
+
+        <div class="cart-item">
+
+            <strong>${item.name}</strong>
+
+            <span>
+                ${item.price.toFixed(2).replace(".",",")} €
+            </span>
+
+            <button
+                onclick="removeItem(${index})"
+                style="
+                margin-top:8px;
+                border:none;
+                background:#e00000;
+                color:white;
+                padding:5px 10px;
+                cursor:pointer;">
+
+                Eliminar
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+
+    items.innerHTML = html;
+
+
+    total.textContent =
+        totalPrice.toFixed(2).replace(".",",") + " €";
+
+}
+
+
+function removeItem(index){
+
+    cart.splice(index,1);
+
+    updateCart();
+
+}
+
+
+function openCart(){
+
+    document
+        .getElementById("cart")
+        .classList
+        .add("open");
+
+}
+
+
+function closeCart(){
+
+    document
+        .getElementById("cart")
+        .classList
+        .remove("open");
+
+}
+
+
+function showOrderForm(){
+
+    if(cart.length === 0){
+
+        alert("Añade algún producto al carrito antes de realizar el pedido.");
+
+        return;
+    }
+
+    document
+        .getElementById("orderForm")
+        .style
+        .display = "block";
+
+}
+
+
+function sendOrder(){
+
+    const name =
+        document.getElementById("customerName").value;
+
+    const phone =
+        document.getElementById("customerPhone").value;
+
+    const address =
+        document.getElementById("customerAddress").value;
+
+    const city =
+        document.getElementById("customerCity").value;
+
+    const postal =
+        document.getElementById("customerPostal").value;
+
+
+    if(
+        !name ||
+        !phone ||
+        !address ||
+        !city ||
+        !postal
+    ){
+
+        alert("Por favor, completa todos los campos obligatorios.");
+
+        return;
+    }
+
+
+    let order = "";
+
+    cart.forEach(item => {
+
+        order +=
+            item.name +
+            " - " +
+            item.price.toFixed(2) +
+            " €\n";
+
+    });
+
+
+    alert(
+        "Pedido preparado correctamente.\n\n" +
+        "Cliente: " + name +
+        "\nTeléfono: " + phone +
+        "\nDirección: " + address +
+        "\nCiudad: " + city +
+        "\n\nProductos:\n" +
+        order +
+        "\nEl siguiente paso será conectar este formulario con el sistema de recepción de pedidos."
+    );
+
+}
+
+</script>
 
 </body>
 </html>
